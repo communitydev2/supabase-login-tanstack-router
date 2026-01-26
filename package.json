@@ -7,13 +7,16 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:routes": "tsr generate"
   },
   "dependencies": {
     "@mantine/core": "8.3.13",
     "@mantine/hooks": "8.3.13",
     "@tanstack/react-router": "^1.157.5",
     "@tanstack/react-router-devtools": "^1.157.5",
+    "@tanstack/router-cli": "^1.157.15",
+    "@types/node": "^25.0.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

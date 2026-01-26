@@ -1,31 +1,33 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { TanStackRouterDevtoolsInProd } from '@tanstack/react-router-devtools'
+import { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import "@mantine/core/styles.css";
+import { MantineProvider } from "@mantine/core";
+import { theme } from "./theme";
 
 
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
 
-const routeTree = rootRoute.addChildren([
-  // ... other routes
-])
+// Create a new router instance
+const router = createRouter({ routeTree })
 
-const router = createRouter({
-  routeTree,
-})
-
-function App() {
-  return <RouterProvider router={router} />
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
 }
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Render the app
+const rootElement = document.getElementById('root')!
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement)
+  root.render(
+    <StrictMode>
+      <MantineProvider theme={theme}>
+      <RouterProvider router={router} />
+      </MantineProvider>
+    </StrictMode>,
+  )
+}
