@@ -16,13 +16,19 @@ export default defineConfig({
   // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
   tanstackRouter({
     target: 'react',
-    autoCodeSplitting: true
+    autoCodeSplitting: true,
+     routesDirectory: path.resolve(dirname, 'src/routes'),
+  generatedRouteTree: path.resolve(dirname, 'src/routeTree.gen.ts'),
   }), react()
   // ...,
   ],
   server: {
     host: true,
-    port: 3000
+    port: 3000,
+    watch: {
+      usePolling: true,
+      interval: 200,
+    },
   },
   test: {
     projects: [{

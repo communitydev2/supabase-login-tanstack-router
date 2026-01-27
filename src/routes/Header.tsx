@@ -1,3 +1,6 @@
+import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
+
+import { createFileRoute } from '@tanstack/react-router'
 import {
   IconBook,
   IconChartPie3,
@@ -28,6 +31,12 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '../assets/Header.module.css';
+
+export const Route = createFileRoute('/Header')({
+  component: Header,
+})
+
+
 
 const mockdata = [
   {
@@ -95,6 +104,7 @@ export function Header() {
             <a href="#" className={classes.link}>
               Home
             </a>
+
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
                 <a href="#" className={classes.link}>
@@ -144,6 +154,7 @@ export function Header() {
             </a>
           </Group>
 
+            <ColorSchemeToggle />
           <Group visibleFrom="sm">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
@@ -195,3 +206,4 @@ export function Header() {
     </Box>
   );
 }
+

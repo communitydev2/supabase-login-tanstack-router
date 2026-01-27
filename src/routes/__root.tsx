@@ -3,6 +3,7 @@ import { TanStackRouterDevtoolsInProd } from '@tanstack/react-router-devtools'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Header } from './Header'
 import { MantineProvider} from "@mantine/core";
+import { theme } from '../theme';
 if(process.env.NODE_ENV === 'production'){
   <TanStackRouterDevtoolsInProd/>
 }
@@ -10,17 +11,18 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-const RootLayout =() => {
-  return(
+const RootLayout =() => (
 
-    <>
-  <MantineProvider theme={{  }}>
+  
+  <>
+  <MantineProvider theme={ theme }>
    <Header/>
     <Outlet />
      </MantineProvider>
     <TanStackRouterDevtools />
   </>
-  )
-}
+)
+  
+
 
 export const Route = createRootRoute({ component: RootLayout })

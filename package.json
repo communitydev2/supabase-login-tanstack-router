@@ -19,13 +19,15 @@
     "@mantine/hooks": "8.3.13",
     "@mantinex/mantine-logo": "^2.0.0",
     "@snoconedev/mantine-ui": "^2.0.0",
+    "@supabase/supabase-js": "^2.93.1",
     "@tabler/icons-react": "^3.36.1",
     "@tanstack/react-router": "^1.157.5",
     "@tanstack/react-router-devtools": "^1.157.5",
     "@tanstack/router-cli": "^1.157.15",
     "@types/node": "^25.0.10",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "supabase": "^2.72.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
