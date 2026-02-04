@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { supabase } from '../supabaseClient'
-
+import { useAuthStore } from '../store/userStore';
 export const Route = createFileRoute('/Account')({
   component: Account,
 })
@@ -12,27 +12,32 @@ export const Route = createFileRoute('/Account')({
 export function Account({ session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
-  const [website, setWebsite] = useState(null)
-  const [avatar_url, setAvatarUrl] = useState(null)
-
+  const authStore = useAuthStore();
 
     useEffect(() => {
     async function getProfile() {
       setLoading(true)
       const { user } = session
+      console.log(session)
 
-      let { data, error } = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
-        .eq('id', user.id)
-        .single()
+      const { data, error } = await supabase
+        .from('user_account')
+        .select("*")
+        .eq('user_id',user.id)
+
+
+      // let { data, error } = await supabase
+      //   .from('user_account')
+      //   .select(`username`)
+      //   .eq('user_id', user.id)
+      //   .single()
 
       if (error) {
         console.warn(error)
       } else if (data) {
-        setUsername(data.username)
-        setWebsite(data.website)
-        setAvatarUrl(data.avatar_url)
+        setUsername(data)
+        authStore.setUser(data);
+        console.log(data)
       }
 
       setLoading(false)

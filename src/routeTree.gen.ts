@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as UsernameDialogRouteImport } from './routes/UsernameDialog'
 import { Route as LandingPageRouteImport } from './routes/LandingPage'
 import { Route as HeaderRouteImport } from './routes/Header'
 import { Route as AuthRouteImport } from './routes/Auth'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsernameDialogRoute = UsernameDialogRouteImport.update({
+  id: '/UsernameDialog',
+  path: '/UsernameDialog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingPageRoute = LandingPageRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/Auth': typeof AuthRoute
   '/Header': typeof HeaderRoute
   '/LandingPage': typeof LandingPageRoute
+  '/UsernameDialog': typeof UsernameDialogRoute
   '/about': typeof AboutRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/Auth': typeof AuthRoute
   '/Header': typeof HeaderRoute
   '/LandingPage': typeof LandingPageRoute
+  '/UsernameDialog': typeof UsernameDialogRoute
   '/about': typeof AboutRoute
 }
 export interface FileRoutesById {
@@ -70,13 +78,28 @@ export interface FileRoutesById {
   '/Auth': typeof AuthRoute
   '/Header': typeof HeaderRoute
   '/LandingPage': typeof LandingPageRoute
+  '/UsernameDialog': typeof UsernameDialogRoute
   '/about': typeof AboutRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Account' | '/Auth' | '/Header' | '/LandingPage' | '/about'
+  fullPaths:
+    | '/'
+    | '/Account'
+    | '/Auth'
+    | '/Header'
+    | '/LandingPage'
+    | '/UsernameDialog'
+    | '/about'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Account' | '/Auth' | '/Header' | '/LandingPage' | '/about'
+  to:
+    | '/'
+    | '/Account'
+    | '/Auth'
+    | '/Header'
+    | '/LandingPage'
+    | '/UsernameDialog'
+    | '/about'
   id:
     | '__root__'
     | '/'
@@ -84,6 +107,7 @@ export interface FileRouteTypes {
     | '/Auth'
     | '/Header'
     | '/LandingPage'
+    | '/UsernameDialog'
     | '/about'
   fileRoutesById: FileRoutesById
 }
@@ -93,6 +117,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   HeaderRoute: typeof HeaderRoute
   LandingPageRoute: typeof LandingPageRoute
+  UsernameDialogRoute: typeof UsernameDialogRoute
   AboutRoute: typeof AboutRoute
 }
 
@@ -103,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/UsernameDialog': {
+      id: '/UsernameDialog'
+      path: '/UsernameDialog'
+      fullPath: '/UsernameDialog'
+      preLoaderRoute: typeof UsernameDialogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/LandingPage': {
@@ -149,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   HeaderRoute: HeaderRoute,
   LandingPageRoute: LandingPageRoute,
+  UsernameDialogRoute: UsernameDialogRoute,
   AboutRoute: AboutRoute,
 }
 export const routeTree = rootRouteImport
