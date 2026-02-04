@@ -24,6 +24,7 @@
     "@tanstack/react-router": "^1.157.5",
     "@tanstack/react-router-devtools": "^1.157.5",
     "@tanstack/router-cli": "^1.157.15",
+    "@tanstack/router-core": "1.157.16",
     "@types/node": "^25.0.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
